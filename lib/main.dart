@@ -29,41 +29,32 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
 
-    List<Icon> scoreKeeper = [
-    // Icon(            
-    //   Icons.check,
-    //   color: Colors.green,
-    //   ),
-    // Icon(
-    //   Icons.close,
-    //   color: Colors.red,
-    // )      
-  ];
+  List<Icon> scoreKeeper = [];
 
   void checkAnswer(bool userSelectedAnswer){
     bool correctAnswer = quizBrain.getAnswer();
 
-    if (correctAnswer == userSelectedAnswer){
-      print("User got it right."); 
-      scoreKeeper.add(
-        Icon(            
-          Icons.check,
-          color: Colors.green,
-          ),
-      );                 
-    } 
-    else{
-      print("User got it wrong.");
-      scoreKeeper.add(
-        Icon(            
-          Icons.close,
-          color: Colors.red,
-          ),
-      ); 
-    }
-
     setState(() {
-      quizBrain.nextQuestion();
+
+      if (correctAnswer == userSelectedAnswer){
+        print("User got it right."); 
+        scoreKeeper.add(
+          Icon(            
+            Icons.check,
+            color: Colors.green,
+            ),
+        );                 
+      } 
+      else{
+        print("User got it wrong.");
+        scoreKeeper.add(
+          Icon(            
+            Icons.close,
+            color: Colors.red,
+            ),
+        ); 
+      }      
+        quizBrain.nextQuestion();
     });
   }
    
